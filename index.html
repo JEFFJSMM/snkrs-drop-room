@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SNKRS S — The Drop Room</title>
+<meta name="description" content="El vault de SNKRS S. Sneakers premium calidad 1.1 en Medellín. Próximo drop, catálogo y pedidos por WhatsApp.">
+<meta property="og:title" content="SNKRS S — The Drop Room">
+<meta property="og:description" content="Sneakers premium 1.1 verificados. Medellín, Colombia. Entra al vault.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231c3fd6'/><text x='50' y='72' font-size='62' font-family='Arial Black' font-weight='900' fill='white' text-anchor='middle'>S</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;900&family=Inter:wght@400;500;600&family=Fraunces:ital,wght@1,500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0a12; --ink-soft:#0f0f1c; --paper:#f3efe6; --cobalt:#1c3fd6; --cobalt-2:#4d6fff;
+  --chrome:#b8c4d0; --signal:#ff3b30; --ink-line:rgba(184,196,208,.15);
+  --display:"Big Shoulders Display",Impact,sans-serif; --body:"Inter",system-ui,sans-serif;
+  --serif:"Fraunces",Georgia,serif; --mono:"Space Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.mono{font-family:var(--mono)}
+
+/* Fondo: rejilla + partículas */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--ink-line) 1px,transparent 1px),linear-gradient(90deg,var(--ink-line) 1px,transparent 1px);
+  background-size:90px 90px;opacity:.4;
+  mask-image:radial-gradient(ellipse 100% 90% at 50% 30%,#000 30%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 100% 90% at 50% 30%,#000 30%,transparent 100%)}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6}
+.bg-halftone{position:fixed;top:0;right:0;width:46vw;height:44vh;z-index:0;pointer-events:none;
+  background-image:radial-gradient(var(--chrome) 1.2px,transparent 1.6px);background-size:12px 12px;opacity:.12;
+  mask-image:radial-gradient(ellipse at top right,#000 15%,transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse at top right,#000 15%,transparent 70%)}
+
+.wrap{position:relative;z-index:1;width:min(1100px,92%);margin:0 auto}
+
+/* Header */
+header{display:flex;align-items:center;justify-content:space-between;padding:26px 0}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:36px;height:36px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cobalt),var(--cobalt-2));color:#fff;font-family:var(--display);font-weight:900;font-size:21px;border-radius:8px}
+.brand strong{font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:.12em}
+header .tag{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--chrome)}
+
+/* Hero */
+.hero{min-height:calc(100svh - 90px);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:20px 0 60px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--chrome);margin-bottom:16px}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(58px,8.5vw,104px);line-height:.92;text-transform:uppercase}
+h1 .glitch{background:linear-gradient(120deg,var(--cobalt-2),var(--cobalt));-webkit-background-clip:text;background-clip:text;color:transparent;position:relative;display:inline-block}
+.tagline{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(17px,2vw,21px);color:var(--chrome);margin:20px 0 8px}
+.tagline em{color:var(--paper)}
+.sub{color:var(--chrome);font-size:15px;max-width:440px;margin-bottom:34px}
+
+/* Countdown */
+.count-label{font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--cobalt-2);margin-bottom:12px}
+.countdown{display:flex;gap:0;border:1px solid var(--ink-line);border-radius:12px;overflow:hidden;width:fit-content;margin-bottom:34px;background:rgba(15,15,28,.6);backdrop-filter:blur(6px)}
+.count-cell{padding:16px 22px;text-align:center;border-left:1px solid var(--ink-line)}
+.count-cell:first-child{border-left:none}
+.count-num{font-family:var(--display);font-weight:900;font-size:clamp(34px,4.5vw,48px);line-height:1;color:var(--paper);font-variant-numeric:tabular-nums;display:block;min-width:2ch}
+.count-unit{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--chrome)}
+
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14px;padding:14px 28px;border-radius:8px;transition:transform .18s,box-shadow .18s,border-color .18s,color .18s}
+.btn-primary{background:linear-gradient(135deg,var(--cobalt),var(--cobalt-2));color:#fff;box-shadow:0 8px 26px rgba(28,63,214,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(77,111,255,.5)}
+.btn-ghost{border:1px solid var(--ink-line)}
+.btn-ghost:hover{border-color:#25d366;color:#25d366}
+.btn-ig:hover{border-color:#e1306c;color:#e1306c}
+
+/* Tarjeta 3D */
+.stage{perspective:1300px;display:flex;justify-content:center}
+.card3d{position:relative;width:min(420px,88vw);background:var(--ink-soft);border:1px solid var(--ink-line);border-left:2px dashed rgba(184,196,208,.4);border-radius:14px;padding:26px 26px 28px 30px;transform-style:preserve-3d;transition:transform .12s ease-out;box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px rgba(77,111,255,.12);overflow:hidden;will-change:transform}
+.card3d::after{content:"";position:absolute;top:0;right:0;width:150px;height:120px;background-image:radial-gradient(var(--chrome) 1px,transparent 1.4px);background-size:9px 9px;opacity:.12;
+  mask-image:radial-gradient(ellipse at top right,#000 15%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at top right,#000 15%,transparent 70%);pointer-events:none}
+.sheen{position:absolute;inset:-40%;background:linear-gradient(105deg,transparent 42%,rgba(184,196,208,.14) 50%,rgba(77,111,255,.12) 54%,transparent 62%);pointer-events:none;transition:transform .12s ease-out}
+.c-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.c-serial{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--chrome)}
+.c-badge{font-family:var(--mono);font-size:9px;letter-spacing:.12em;padding:3px 9px;border-radius:4px;border:1px solid rgba(77,111,255,.5);color:var(--cobalt-2)}
+.c-art{padding:22px 8px 12px;color:var(--cobalt-2);transform:translateZ(46px)}
+.c-art svg{width:100%;height:auto;filter:drop-shadow(0 18px 22px rgba(0,0,0,.45))}
+.stamp{position:absolute;right:22px;bottom:104px;width:66px;height:66px;border:2px solid rgba(77,111,255,.65);border-radius:50%;display:grid;place-content:center;text-align:center;transform:rotate(-12deg) translateZ(60px);font-family:var(--mono);font-size:9px;letter-spacing:.14em;line-height:1.5;color:var(--cobalt-2)}
+.stamp::before{content:"";position:absolute;inset:4px;border:1px dashed rgba(77,111,255,.45);border-radius:50%}
+.c-name{font-family:var(--display);font-weight:700;font-size:30px;text-transform:uppercase;line-height:1;transform:translateZ(30px)}
+.c-model{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--chrome);margin:4px 0 12px}
+.c-price{font-family:var(--display);font-weight:900;font-size:34px}
+.c-price-old{font-family:var(--mono);font-size:12px;color:var(--chrome);text-decoration:line-through;margin-left:10px}
+.c-hint{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:rgba(184,196,208,.5);text-align:center;margin-top:16px}
+
+/* Ticker */
+.ticker{border-top:1px solid var(--ink-line);border-bottom:1px solid var(--ink-line);overflow:hidden;padding:13px 0;position:relative;z-index:1;background:var(--ink)}
+.ticker-track{display:inline-flex;white-space:nowrap;font-family:var(--mono);font-size:11px;letter-spacing:.28em;color:var(--chrome);animation:scroll 38s linear infinite}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Catálogo mini */
+.catalog{padding:90px 0}
+.catalog h2{font-family:var(--display);font-weight:900;font-size:clamp(38px,5.5vw,58px);text-transform:uppercase;margin-bottom:8px}
+.catalog .lead{color:var(--chrome);font-size:15px;margin-bottom:44px;max-width:520px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.pcard{background:var(--ink-soft);border:1px solid var(--ink-line);border-left:2px dashed rgba(184,196,208,.4);border-radius:12px;padding:22px 22px 24px 26px;position:relative;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+.pcard:hover{transform:translateY(-6px);border-color:rgba(77,111,255,.55);box-shadow:0 0 0 1px rgba(77,111,255,.35),0 18px 40px rgba(0,0,0,.45)}
+.pcard .c-art{padding:14px 6px 8px;transform:none}
+.pcard .c-art svg{filter:none}
+.pcard .c-name{font-size:22px;transform:none}
+.p-row{display:flex;align-items:baseline;gap:10px;margin:8px 0 16px}
+.p-sizes{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--chrome);margin-bottom:16px}
+.p-wa{display:flex;width:100%;justify-content:center;gap:8px;border:1px solid var(--ink-line);border-radius:8px;padding:12px;font-size:13.5px;font-weight:600;transition:.18s}
+.p-wa:hover{border-color:#25d366;color:#25d366}
+
+/* Footer */
+footer{border-top:1px solid var(--ink-line);padding:34px 0;position:relative;z-index:1}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer .links{display:flex;gap:22px}
+footer a{font-size:13px;color:var(--chrome);transition:color .15s}
+footer a:hover{color:var(--paper)}
+footer .fine{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:rgba(184,196,208,.5)}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:52px;padding-top:8px;text-align:left}
+  .stage{order:-1;margin-top:10px}
+  .countdown{width:100%;justify-content:space-between}
+  .count-cell{flex:1;padding:14px 8px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-halftone" aria-hidden="true"></div>
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<div class="wrap">
+  <header>
+    <div class="brand"><span class="mark">S</span><strong>SNKRS&nbsp;S</strong></div>
+    <span class="tag">MEDELLÍN · CO — EST. VAULT</span>
+  </header>
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">ACCESO AL VAULT · CALIDAD 1.1 VERIFICADA</p>
+      <h1>THE<br><span class="glitch">DROP</span><br>ROOM</h1>
+      <p class="tagline">los pares no se anuncian — <em>se sueltan.</em></p>
+      <p class="sub">Sneakers premium verificados par por par en Medellín. Pide por WhatsApp y tu par sale el mismo día a cualquier parte de Colombia.</p>
+
+      <p class="count-label">▮ PRÓXIMO DROP EN</p>
+      <div class="countdown" id="countdown">
+        <div class="count-cell"><span class="count-num" id="cd-d">00</span><span class="count-unit">DÍAS</span></div>
+        <div class="count-cell"><span class="count-num" id="cd-h">00</span><span class="count-unit">HRS</span></div>
+        <div class="count-cell"><span class="count-num" id="cd-m">00</span><span class="count-unit">MIN</span></div>
+        <div class="count-cell"><span class="count-num" id="cd-s">00</span><span class="count-unit">SEG</span></div>
+      </div>
+
+      <div class="ctas">
+        <a class="btn btn-primary" href="#catalogo">Ver catálogo ↓</a>
+        <a class="btn btn-ghost" id="waMain" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-ghost btn-ig" id="igMain" href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="card3d" id="card3d">
+        <div class="sheen" id="sheen"></div>
+        <div class="c-top"><span class="c-serial">SNK-AF1L-001</span><span class="c-badge">MÁS VENDIDO</span></div>
+        <div class="c-art">
+          <svg viewBox="0 0 260 140" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sneaker">
+            <path d="M10 104 C10 96 16 88 28 82 L64 70 C92 60 116 48 134 38 C142 33 152 30 162 30 L204 30 C220 30 232 40 238 56 C244 70 250 82 250 96 C250 110 240 118 224 118 L36 118 C20 118 10 114 10 104 Z M12 98 C70 94 170 94 248 92 M92 60 L104 74 M108 52 L120 66 M124 45 L136 59 M162 30 C158 44 158 58 164 72 M56 96 C110 90 160 74 206 52 M28 82 C44 88 54 92 64 96"
+              stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="stamp">VERIFIED<br>1.1</span>
+        <h3 class="c-name">Air Force 1<br>Triple White</h3>
+        <p class="c-model">LOW · CALIDAD 1.1 · TALLAS 36–44</p>
+        <div><span class="c-price">$180.000</span><span class="c-price-old">$220.000</span></div>
+        <p class="c-hint">— MUEVE EL MOUSE / INCLINA TU CELULAR —</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>AUTENTICADO ✦ MEDELLÍN CO ✦ TALLAS 36–44 ✦ ENVÍO 24H ✦ CALIDAD 1.1 VERIFICADA ✦ PAGO NEQUI · DAVIPLATA ✦ DESPACHO MISMO DÍA ✦&nbsp;</span>
+    <span>AUTENTICADO ✦ MEDELLÍN CO ✦ TALLAS 36–44 ✦ ENVÍO 24H ✦ CALIDAD 1.1 VERIFICADA ✦ PAGO NEQUI · DAVIPLATA ✦ DESPACHO MISMO DÍA ✦&nbsp;</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="catalog" id="catalogo">
+    <h2 class="reveal">Disponible ahora</h2>
+    <p class="lead reveal">Cada par sale con su serial único e inspección punto por punto. Toca el botón y pídelo directo por WhatsApp.</p>
+    <div class="grid" id="productGrid"></div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="mark">S</span><strong style="font-size:16px">SNKRS&nbsp;S</strong></div>
+    <div class="links">
+      <a id="waFoot" href="#" target="_blank" rel="noopener">WhatsApp</a>
+      <a id="igFoot" href="#" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <span class="fine">SNKRS S © 2026 · MEDELLÍN, COLOMBIA</span>
+  </div>
+</footer>
+
+<script>
+'use strict';
+/* ============ CONFIGURACIÓN — edita solo esto ============ */
+const CONFIG = {
+  whatsapp: '573001112233',          // tu número con 57 adelante
+  instagram: 'snkrs.s',              // tu usuario de Instagram
+  dropDia: 5,                        // día del drop semanal: 0=Dom ... 5=Viernes
+  dropHora: 20,                      // hora local de Colombia (20 = 8 pm)
+  productos: [
+    { serial:'SNK-AF1L-001', nombre:'Air Force 1 Low Triple White', modelo:'LOW',  precio:180000, antes:220000, tallas:'36 – 44', tint:'#4d6fff', badge:'MÁS VENDIDO' },
+    { serial:'SNK-AF1M-002', nombre:'Air Force 1 Mid White',        modelo:'MID',  precio:195000, antes:240000, tallas:'36 – 43', tint:'#b8c4d0', badge:'NUEVO' },
+    { serial:'SNK-AF1H-003', nombre:'Air Force 1 High White',       modelo:'HIGH', precio:210000, antes:260000, tallas:'37 – 43', tint:'#f3efe6', badge:null }
+  ]
+};
+/* ========================================================== */
+
+const fmt = v => '$' + v.toLocaleString('es-CO');
+const wa = t => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t)}`;
+const SVG = document.querySelector('.c-art svg').outerHTML;
+
+// Enlaces
+document.getElementById('waMain').href = wa('Hola! Vengo del Drop Room de SNKRS S 👟');
+document.getElementById('waFoot').href = wa('Hola! Vengo del Drop Room de SNKRS S 👟');
+document.getElementById('igMain').href = `https://instagram.com/${CONFIG.instagram}`;
+document.getElementById('igFoot').href = `https://instagram.com/${CONFIG.instagram}`;
+
+// Catálogo
+document.getElementById('productGrid').innerHTML = CONFIG.productos.map(p => `
+  <article class="pcard reveal">
+    <div class="c-top"><span class="c-serial">${p.serial}</span>${p.badge ? `<span class="c-badge">${p.badge}</span>` : ''}</div>
+    <div class="c-art" style="color:${p.tint}">${SVG}</div>
+    <h3 class="c-name">${p.nombre}</h3>
+    <div class="p-row"><span class="c-price" style="font-size:26px">${fmt(p.precio)}</span><span class="c-price-old">${fmt(p.antes)}</span></div>
+    <p class="p-sizes">TALLAS ${p.tallas} · ${p.modelo}</p>
+    <a class="p-wa" href="${wa(`Hola! Quiero las ${p.nombre} 👟 ¿qué tallas tienes disponibles?`)}" target="_blank" rel="noopener">Pedir por WhatsApp →</a>
+  </article>`).join('');
+
+// Countdown al próximo drop (siempre calcula el siguiente — nunca se vence)
+function nextDrop() {
+  // Hora Colombia = UTC-5 fija
+  const nowUTC = Date.now();
+  const nowCol = new Date(nowUTC - 5 * 3600e3);
+  const d = new Date(nowCol);
+  const diff = (CONFIG.dropDia - d.getUTCDay() + 7) % 7;
+  d.setUTCDate(d.getUTCDate() + diff);
+  d.setUTCHours(CONFIG.dropHora, 0, 0, 0);
+  if (d <= nowCol) d.setUTCDate(d.getUTCDate() + 7);
+  return d.getTime() + 5 * 3600e3; // de vuelta a UTC real
+}
+let target = nextDrop();
+function tick() {
+  let ms = target - Date.now();
+  if (ms <= 0) { target = nextDrop(); ms = target - Date.now(); }
+  const s = Math.floor(ms / 1000);
+  document.getElementById('cd-d').textContent = String(Math.floor(s / 86400)).padStart(2, '0');
+  document.getElementById('cd-h').textContent = String(Math.floor(s / 3600) % 24).padStart(2, '0');
+  document.getElementById('cd-m').textContent = String(Math.floor(s / 60) % 60).padStart(2, '0');
+  document.getElementById('cd-s').textContent = String(s % 60).padStart(2, '0');
+}
+setInterval(tick, 1000); tick();
+
+// Tarjeta 3D: sigue el mouse (desktop) o el giroscopio (celular)
+const card = document.getElementById('card3d');
+const sheen = document.getElementById('sheen');
+let targetRX = 3, targetRY = -9, curRX = 3, curRY = -9;
+
+window.addEventListener('mousemove', e => {
+  const nx = e.clientX / innerWidth - 0.5;
+  const ny = e.clientY / innerHeight - 0.5;
+  targetRY = nx * 26;
+  targetRX = -ny * 18;
+});
+window.addEventListener('deviceorientation', e => {
+  if (e.beta === null) return;
+  targetRY = Math.max(-24, Math.min(24, e.gamma * 0.8));
+  targetRX = Math.max(-18, Math.min(18, (e.beta - 45) * -0.5));
+});
+(function animate() {
+  curRX += (targetRX - curRX) * 0.09;
+  curRY += (targetRY - curRY) * 0.09;
+  card.style.transform = `rotateX(${curRX}deg) rotateY(${curRY}deg)`;
+  sheen.style.transform = `translateX(${curRY * 9}px) translateY(${curRX * -6}px)`;
+  requestAnimationFrame(animate);
+})();
+
+// Partículas flotantes (motas de polvo del vault)
+const cv = document.getElementById('particles');
+const ctx = cv.getContext('2d');
+let W, H, dots = [];
+function resize() {
+  W = cv.width = innerWidth; H = cv.height = innerHeight;
+  dots = Array.from({ length: Math.min(70, W / 18) }, () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    r: Math.random() * 1.6 + 0.4,
+    vx: (Math.random() - 0.5) * 0.18, vy: -Math.random() * 0.25 - 0.05,
+    a: Math.random() * 0.5 + 0.1
+  }));
+}
+window.addEventListener('resize', resize); resize();
+(function drawDots() {
+  ctx.clearRect(0, 0, W, H);
+  for (const p of dots) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }
+    if (p.x < -5) p.x = W + 5; if (p.x > W + 5) p.x = -5;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = Math.random() < 0.02 ? `rgba(77,111,255,${p.a})` : `rgba(184,196,208,${p.a * 0.55})`;
+    ctx.fill();
+  }
+  requestAnimationFrame(drawDots);
+})();
+
+// Scroll reveal
+const obs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+}), { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
