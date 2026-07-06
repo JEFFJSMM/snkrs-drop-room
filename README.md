@@ -1,7 +1,7 @@
 # 👟 SNKRS S — The Drop Room
 
-Página "link en la bio" de [SNKRS S](https://instagram.com/snkrs.s) — sneakers premium
-calidad 1.1 verificados, Medellín, Colombia.
+Página "link en la bio" de **SNKRS S** — sneakers premium calidad 1.1 verificados,
+Medellín, Colombia. Por [JEFFJSMM](https://github.com/JEFFJSMM).
 
 **Una sola página, cero dependencias, cero backend.** HTML + CSS + JS vanilla.
 
@@ -20,7 +20,7 @@ Todo se edita en el bloque `CONFIG` al inicio del `<script>` en `index.html`:
 ```js
 const CONFIG = {
   whatsapp: '573001112233',   // tu número con 57 adelante
-  instagram: 'snkrs.s',       // tu usuario de Instagram
+  instagram: '',              // tu usuario de Instagram (vacío = botones ocultos)
   dropDia: 5,                 // día del drop semanal (0=Dom ... 5=Vie)
   dropHora: 20,               // hora Colombia (20 = 8 pm)
   productos: [ ... ]          // los pares que se muestran

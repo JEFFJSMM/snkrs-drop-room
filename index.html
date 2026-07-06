@@ -215,7 +215,7 @@ footer .fine{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:r
 /* ============ CONFIGURACIÓN — edita solo esto ============ */
 const CONFIG = {
   whatsapp: '573001112233',          // tu número con 57 adelante
-  instagram: 'snkrs.s',              // tu usuario de Instagram
+  instagram: '',                     // tu usuario de Instagram (vacío = botones ocultos)
   dropDia: 5,                        // día del drop semanal: 0=Dom ... 5=Viernes
   dropHora: 20,                      // hora local de Colombia (20 = 8 pm)
   productos: [
@@ -233,8 +233,11 @@ const SVG = document.querySelector('.c-art svg').outerHTML;
 // Enlaces
 document.getElementById('waMain').href = wa('Hola! Vengo del Drop Room de SNKRS S 👟');
 document.getElementById('waFoot').href = wa('Hola! Vengo del Drop Room de SNKRS S 👟');
-document.getElementById('igMain').href = `https://instagram.com/${CONFIG.instagram}`;
-document.getElementById('igFoot').href = `https://instagram.com/${CONFIG.instagram}`;
+['igMain','igFoot'].forEach(id => {
+  const el = document.getElementById(id);
+  if (CONFIG.instagram) el.href = `https://instagram.com/${CONFIG.instagram}`;
+  else el.style.display = 'none';
+});
 
 // Catálogo
 document.getElementById('productGrid').innerHTML = CONFIG.productos.map(p => `
